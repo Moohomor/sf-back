@@ -1,1 +1,1 @@
-sessions = {'0':{'name':'moohomor'}}
+sessions = {}

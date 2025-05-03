@@ -29,3 +29,11 @@ def login():
     token = str(uuid4())
     sessions[token] = {'name': name}
     return '{"status": "OK", "token": "'+token+'"}'
+
+@bp.route('/logout', methods=['POST'])
+def logout():
+    uuid = request.args.get('uuid')
+    if uuid not in sessions:
+        return 'uuid does not present', 403
+    del sessions[request.args.get('uuid')]
+    return "OK"
