@@ -47,13 +47,14 @@ def file_content(file):
     return dbx.files_download(file)[1].content.decode()
 
 def upload(data, path):
-    # open('main.py',mode='rb').read()
     return dbx.files_upload(data, path, dropbox.files.WriteMode.overwrite)
+
+def delete(path): # also applicable to folders
+    return dbx.files_delete(path)
 
 def mkdir(path):
     return dbx.files_create_folder(path)
-# md, res = dbx.files_download('/storage/moohomor/first/main.mod')
-# print(res.content.decode())
+
 if __name__ == '__main__':
     # print(get_link())
     login(input().strip())

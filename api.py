@@ -1,7 +1,7 @@
 from flask import Blueprint
 from flask import request
 from globals import sessions
-from box_api import list_files, file_content, mkdir, upload
+from box_api import list_files, file_content, mkdir, upload, delete
 
 bp = Blueprint('api', __name__, url_prefix='/api')
 def get_session():
@@ -66,3 +66,13 @@ def upload_public():
     name = request.args.get('name')
     data = request.data
     return str(upload(data,'/public/'+name) is not None)
+
+@bp.route('/file_rd', methods=['PUT','DELETE'])
+def file_rd():
+    session = get_session()
+    if session is None:
+        return 'not authorized', 403
+    if request.method == 'PUT': # TODO: rename file api on PUT
+        return 'wip', 405
+    name = request.args.get('name')
+    delete('/storage/'+session['name']+'/'+name)

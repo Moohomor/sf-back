@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cb49b2e-434b-4446-bb1e-146569926c67" name="Changes" comment="Auth + Dropbox api">
+    <list default="true" id="6cb49b2e-434b-4446-bb1e-146569926c67" name="Changes" comment="Update requirments.txt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/box_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/box_api.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +152,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746280344863</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Update requirments.txt">
+      <option name="closed" value="true" />
+      <created>1746281866925</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1746281866925</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -159,6 +168,7 @@
     <MESSAGE value="requirements.txt" />
     <MESSAGE value="Little changes" />
     <MESSAGE value="Auth + Dropbox api" />
-    <option name="LAST_COMMIT_MESSAGE" value="Auth + Dropbox api" />
+    <MESSAGE value="Update requirments.txt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update requirments.txt" />
   </component>
 </project>
