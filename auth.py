@@ -26,4 +26,4 @@ def login():
         return 'wrong password', 403
     token = str(uuid4())
     sessions[token] = {'name': name}
-    return '{"status": OK, "token": "'+token+'"}'
+    return '{"status": "OK", "token": "'+token+'"}'
