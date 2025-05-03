@@ -7,6 +7,12 @@ from uuid import uuid4
 from json import dumps, loads
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
+
+@bp.route('/authorized')
+def authorized():
+    uuid = request.args.get('uuid')
+    return str(int(uuid in sessions))
+
 @bp.route('/signup', methods=['POST'])
 def signup():
     name = request.args.get('name')
