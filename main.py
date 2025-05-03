@@ -36,7 +36,7 @@ def get_token_page(token):
         return "Dropbox initialized successfully"
     except Exception as e:
         print(e)
-        return e, 500
+        return str(e), 500
 
-# serve(app, port='8080')
-app.run(host='0.0.0.0',port='8080')
+# serve(app, host='0.0.0.0',)
+app.run(host='0.0.0.0')

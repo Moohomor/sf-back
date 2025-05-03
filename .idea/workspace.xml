@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cb49b2e-434b-4446-bb1e-146569926c67" name="Changes" comment="gitignore .idea">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="6cb49b2e-434b-4446-bb1e-146569926c67" name="Changes" comment="Update requirements.txt" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -183,7 +180,23 @@
       <option name="project" value="LOCAL" />
       <updated>1746287560113</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="CORS">
+      <option name="closed" value="true" />
+      <created>1746291569087</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1746291569087</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Update requirements.txt">
+      <option name="closed" value="true" />
+      <created>1746291755309</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1746291755309</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -194,6 +207,8 @@
     <MESSAGE value="Update requirments.txt" />
     <MESSAGE value="Delete file api" />
     <MESSAGE value="gitignore .idea" />
-    <option name="LAST_COMMIT_MESSAGE" value="gitignore .idea" />
+    <MESSAGE value="CORS" />
+    <MESSAGE value="Update requirements.txt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update requirements.txt" />
   </component>
 </project>
