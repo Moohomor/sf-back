@@ -1,11 +1,40 @@
 from flask import Flask
 from waitress import serve
+from dotenv import load_dotenv;load_dotenv()
+import api, auth
+
+import box_api
+
+try:
+    box_api.login('')
+    print('Dropbox authorized')
+except Exception as e:
+    print('Please open "/dbx" page')
 
 app = Flask(__name__)
+app.register_blueprint(api.bp, url_prefix='/api')
+app.register_blueprint(auth.bp, url_prefix='/auth')
 
 @app.route("/ping")
 def ping():
     return "pong"
+
+@app.route('/dbx')
+def auth_page():
+    if box_api.authorized():
+        return "Dropbox is already authorized"
+    return (f'1. Go to this <a target="DBX Auth" href="{box_api.get_link()}">page</a><br>'
+            f"2. Click \"Allow\" (you might have to log in first).<br>"
+            f"3. Copy the authorization code.<br>"
+            f"4. Insert it in URL after /dbx/")
+@app.route('/dbx/<token>')
+def get_token_page(token):
+    try:
+        box_api.login(token.strip())
+        return "Dropbox initialized successfully"
+    except Exception as e:
+        print(e)
+        return e, 500
 
 # serve(app, port='8080')
 app.run(host='0.0.0.0',port='8080')
