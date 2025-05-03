@@ -76,3 +76,10 @@ def file_rd():
         return 'wip', 405
     name = request.args.get('name')
     delete('/storage/'+session['name']+'/'+name)
+
+@bp.route('/file_public', methods=['PUT','DELETE'])
+def file_public():
+    if request.method == 'PUT': # TODO: rename file api on PUT
+        return 'wip', 405
+    name = request.args.get('name')
+    delete('/public/'+name)
