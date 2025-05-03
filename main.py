@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from waitress import serve
 from dotenv import load_dotenv;load_dotenv()
 import api, auth
@@ -12,6 +13,7 @@ except Exception as e:
     print('Please open "/dbx" page')
 
 app = Flask(__name__)
+CORS(app)
 app.register_blueprint(api.bp, url_prefix='/api')
 app.register_blueprint(auth.bp, url_prefix='/auth')
 
