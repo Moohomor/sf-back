@@ -15,7 +15,9 @@ def signup():
         return 'already signed up', 409
     upload(dumps({'name':name,'password_hash':generate_password_hash(password)}).encode(),
            '/storage/'+name+'/credentials.json')
-    return 'OK'
+    token = str(uuid4())
+    sessions[token] = {'name': name}
+    return '{"status": "OK", "token": "'+token+'"}'
 
 @bp.route('/login')
 def login():
