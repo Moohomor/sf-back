@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cb49b2e-434b-4446-bb1e-146569926c67" name="Changes" comment="Logout feature">
+    <list default="true" id="6cb49b2e-434b-4446-bb1e-146569926c67" name="Changes" comment="File rd public">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/globals.py" beforeDir="false" afterPath="$PROJECT_DIR$/globals.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/box_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/box_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -224,7 +224,23 @@
       <option name="project" value="LOCAL" />
       <updated>1746294435623</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Logout feature">
+      <option name="closed" value="true" />
+      <created>1746296728338</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1746296728338</updated>
+    </task>
+    <task id="LOCAL-00015" summary="File rd public">
+      <option name="closed" value="true" />
+      <created>1746296797328</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1746296797328</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -240,6 +256,7 @@
     <MESSAGE value="Fix" />
     <MESSAGE value="Auth improvements" />
     <MESSAGE value="Logout feature" />
-    <option name="LAST_COMMIT_MESSAGE" value="Logout feature" />
+    <MESSAGE value="File rd public" />
+    <option name="LAST_COMMIT_MESSAGE" value="File rd public" />
   </component>
 </project>

@@ -26,8 +26,10 @@ def login(auth_code):
                 raise Exception('dbx_token is empty')
     except Exception as e:
         print(e)
-        oauth_result = auth_flow.finish(auth_code)
-        token = oauth_result.refresh_token
+        token = os.getenv('DBX_TOKEN')
+        if not token:
+            oauth_result = auth_flow.finish(auth_code)
+            token = oauth_result.refresh_token
         with open('dbx_token', 'w') as f:
             f.write(token)
     try:

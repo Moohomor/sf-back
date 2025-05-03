@@ -1,9 +1,10 @@
 from flask import Flask
 from flask_cors import CORS
 from waitress import serve
+import os
 from dotenv import load_dotenv;load_dotenv()
-import api, auth
 
+import api, auth
 import box_api
 
 try:
