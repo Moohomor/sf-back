@@ -23,7 +23,7 @@ def signup():
            '/storage/'+name+'/credentials.json')
     token = str(uuid4())
     sessions[token] = {'name': name}
-    return '{"status": "OK", "token": "'+token+'"}'
+    return {"status": "OK", "token": token}
 
 @bp.route('/login')
 def login():
@@ -34,7 +34,7 @@ def login():
         return 'wrong password', 403
     token = str(uuid4())
     sessions[token] = {'name': name}
-    return '{"status": "OK", "token": "'+token+'"}'
+    return {"status": "OK", "token": token}
 
 @bp.route('/logout', methods=['POST'])
 def logout():

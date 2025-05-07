@@ -1,5 +1,6 @@
 from flask import Blueprint
 from flask import request
+from flask import Response
 from globals import sessions
 from box_api import list_files, file_content, mkdir, upload, delete
 
@@ -15,12 +16,12 @@ def list_dir():
     if session is None:
         return 'not authorized', 403
     directory = request.args.get('project')
-    return str([i.name for i in list_files('/storage/'+session['name']+'/'+directory)])
+    return [i.name for i in list_files('/storage/'+session['name']+'/'+directory)]
 
 @bp.route('/list_public')
 def list_public():
     directory = request.args.get('project')
-    return str([i.name for i in list_files('/public/'+directory)])
+    return [i.name for i in list_files('/public/'+directory)]
 
 @bp.route('/read')
 def read_file():
@@ -28,12 +29,12 @@ def read_file():
     if session is None:
         return 'not authorized', 403
     file = request.args.get('file')
-    return file_content('/storage/'+session['name']+'/'+file)
+    return Response(file_content('/storage/'+session['name']+'/'+file), mimetype='text/plain')
 
 @bp.route('/read_public')
 def read_public():
     file = request.args.get('file')
-    return file_content('/public/'+file)
+    return Response(file_content('/public/'+file), mimetype='text/plain')
 
 @bp.route('/md', methods=['POST'])
 def make_dir():
@@ -44,6 +45,7 @@ def make_dir():
     if not name:
         return 'invalid name', 400
     print('Mkdir', mkdir('/storage/'+session['name']+name))
+    return 'OK'
 
 @bp.route('/md_public', methods=['POST'])
 def make_dir_public ():
@@ -51,6 +53,7 @@ def make_dir_public ():
     if not name:
         return 'invalid name', 400
     print('Mkdir', mkdir('/public/'+name))
+    return 'OK'
 
 @bp.route('/upload', methods=['POST'])
 def upload_file():
@@ -76,6 +79,7 @@ def file_rd():
         return 'wip', 405
     name = request.args.get('name')
     delete('/storage/'+session['name']+'/'+name)
+    return 'OK'
 
 @bp.route('/file_public', methods=['PUT','DELETE'])
 def file_public():
@@ -83,3 +87,4 @@ def file_public():
         return 'wip', 405
     name = request.args.get('name')
     delete('/public/'+name)
+    return 'OK'
