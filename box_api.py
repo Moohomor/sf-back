@@ -45,8 +45,9 @@ def login(auth_code):
 def list_files(path: str):
     return dbx.files_list_folder(path).entries
 
-def file_content(file):
-    return dbx.files_download(file)[1].content.decode()
+def file_content(file, decode=True):
+    resp = dbx.files_download(file)[1].content
+    return resp.decode() if decode else resp
 
 def upload(data, path):
     return dbx.files_upload(data, path, dropbox.files.WriteMode.overwrite)

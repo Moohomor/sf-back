@@ -30,13 +30,14 @@ def read_file():
     if session is None:
         return 'not authorized', 403
     file = request.args.get('file')
-    return Response(file_content('/storage/'+session['name']+'/'+file), mimetype='text/plain')
+    binary = '.' not in file or file[-3:] not in ['mod','txt','csv']
+    return Response(file_content('/storage/'+session['name']+'/'+file, False), mimetype=guess_type(file)[0] if binary else 'text/plain')
 
 @bp.route('/read_public')
 def read_public():
     file = request.args.get('file')
     binary = '.' not in file or file[-3:] not in ['mod','txt','csv']
-    return Response(file_content('/public/'+file), mimetype=guess_type(file)[0] if binary else 'text/plain')
+    return Response(file_content('/public/'+file, False), mimetype=guess_type(file)[0] if binary else 'text/plain')
 
 @bp.route('/md', methods=['POST'])
 def make_dir():

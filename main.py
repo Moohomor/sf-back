@@ -4,7 +4,6 @@ from waitress import serve
 import os
 from dotenv import load_dotenv;load_dotenv()
 
-import api, auth
 import box_api
 
 try:
@@ -15,6 +14,7 @@ except Exception as e:
 
 app = Flask(__name__)
 CORS(app)
+import api, auth
 app.register_blueprint(api.bp, url_prefix='/api')
 app.register_blueprint(auth.bp, url_prefix='/auth')
 
