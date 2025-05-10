@@ -2,6 +2,7 @@ from flask import Blueprint
 from flask import request
 from flask import Response
 from globals import sessions
+from mimetypes import guess_type
 from box_api import list_files, file_content, mkdir, upload, delete
 
 bp = Blueprint('api', __name__, url_prefix='/api')
@@ -34,7 +35,8 @@ def read_file():
 @bp.route('/read_public')
 def read_public():
     file = request.args.get('file')
-    return Response(file_content('/public/'+file), mimetype='text/plain')
+    binary = '.' not in file or file[-3:] not in ['mod','txt','csv']
+    return Response(file_content('/public/'+file), mimetype=guess_type(file)[0] if binary else 'text/plain')
 
 @bp.route('/md', methods=['POST'])
 def make_dir():
