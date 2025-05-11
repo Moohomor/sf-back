@@ -52,11 +52,14 @@ def file_content(file, decode=True):
 def upload(data, path):
     return dbx.files_upload(data, path, dropbox.files.WriteMode.overwrite)
 
-def delete(path): # also applicable to folders
+def delete(path):  # also applicable to folders
     return dbx.files_delete(path)
 
 def mkdir(path):
     return dbx.files_create_folder(path)
+
+def copy_files(frm, to):
+    dbx.files_copy_v2(from_path=frm, to_path=to)
 
 if __name__ == '__main__':
     # print(get_link())

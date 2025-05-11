@@ -1,8 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
 from waitress import serve
-import os
-from dotenv import load_dotenv;load_dotenv()
+from dotenv import load_dotenv; load_dotenv()
 
 import box_api
 
@@ -39,5 +38,5 @@ def get_token_page(token):
         print(e)
         return str(e), 500
 
-# serve(app, host='0.0.0.0',)
-app.run(host='0.0.0.0')
+serve(app, host='0.0.0.0',)
+# app.run(host='0.0.0.0')

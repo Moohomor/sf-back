@@ -2,7 +2,7 @@ from flask import Blueprint
 from flask import request
 from werkzeug.security import generate_password_hash, check_password_hash
 from globals import sessions
-from box_api import list_files, file_content, mkdir, upload
+from box_api import list_files, file_content, upload
 from uuid import uuid4
 from json import dumps, loads
 
@@ -19,7 +19,7 @@ def signup():
     password = request.args.get('password')
     if name in [i.name for i in list_files('/storage')]:
         return 'already signed up', 409
-    upload(dumps({'name':name,'password_hash':generate_password_hash(password)}).encode(),
+    upload(dumps({'name': name, 'password_hash': generate_password_hash(password)}).encode(),
            '/storage/'+name+'/credentials.json')
     token = str(uuid4())
     sessions[token] = {'name': name}

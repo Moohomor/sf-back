@@ -3,7 +3,8 @@ from flask import request
 from flask import Response
 from globals import sessions
 from mimetypes import guess_type
-from box_api import list_files, file_content, mkdir, upload, delete
+from box_api import list_files, file_content, mkdir, upload, delete, copy_files
+import os
 
 bp = Blueprint('api', __name__, url_prefix='/api')
 def get_session():
@@ -31,7 +32,8 @@ def read_file():
         return 'not authorized', 403
     file = request.args.get('file')
     binary = '.' not in file or file[-3:] not in ['mod','txt','csv']
-    return Response(file_content('/storage/'+session['name']+'/'+file, False), mimetype=guess_type(file)[0] if binary else 'text/plain')
+    return Response(file_content('/storage/'+session['name']+'/'+file, False),
+                    mimetype=guess_type(file)[0] if binary else 'text/plain')
 
 @bp.route('/read_public')
 def read_public():
@@ -73,12 +75,43 @@ def upload_public():
     data = request.data
     return str(upload(data,'/public/'+name) is not None)
 
+@bp.route('/uploadb', methods=['POST'])
+def uploadb_file():
+    session = get_session()
+    if session is None:
+        return 'not authorized', 403
+    if 'file' not in request.files:
+        return 'where is file', 400
+    file = request.files['file']
+    if file.filename == '':
+        return 'No selected file', 400
+    file.save(file.filename)
+    name = request.args.get('name')
+    with open(file.filename, 'rb') as f:
+        data = f.read()
+    os.remove(file.filename)
+    return str(upload(data,'/storage/'+session['name']+'/'+name) is not None)
+
+@bp.route('/uploadb_public', methods=['POST'])
+def uploadb_public():
+    if 'file' not in request.files:
+        return 'where is file', 400
+    file = request.files['file']
+    if file.filename == '':
+        return 'No selected file', 400
+    file.save(file.filename)
+    name = request.args.get('name')
+    with open(file.filename, 'rb') as f:
+        data = f.read()
+    os.remove(file.filename)
+    return str(upload(data,'/public/'+name) is not None)
+
 @bp.route('/file_rd', methods=['PUT','DELETE'])
 def file_rd():
     session = get_session()
     if session is None:
         return 'not authorized', 403
-    if request.method == 'PUT': # TODO: rename file api on PUT
+    if request.method == 'PUT':  # TODO: rename file api on PUT
         return 'wip', 405
     name = request.args.get('name')
     delete('/storage/'+session['name']+'/'+name)
@@ -86,8 +119,17 @@ def file_rd():
 
 @bp.route('/file_public', methods=['PUT','DELETE'])
 def file_public():
-    if request.method == 'PUT': # TODO: rename file api on PUT
+    if request.method == 'PUT':  # TODO: rename file api on PUT
         return 'wip', 405
     name = request.args.get('name')
     delete('/public/'+name)
     return 'OK'
+
+@bp.route('/copy', methods=['POST'])
+def copy_handler():
+    session = get_session()
+    frm = request.args.get('from')
+    to = request.args.get('to')
+    if (frm.startswith('/storage') or to.startswith('/storage')) and session is None:
+        return 'not authorized', 403
+    copy_files(frm, to)
