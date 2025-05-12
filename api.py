@@ -142,3 +142,4 @@ def copy_handler():
     if (frm.startswith('/storage') or to.startswith('/storage')) and session is None:
         return 'not authorized', 403
     copy_files(frm, to)
+    return 'OK'
