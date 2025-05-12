@@ -25,6 +25,15 @@ def list_public():
     directory = request.args.get('project')
     return [i.name for i in list_files('/public/'+directory)]
 
+@bp.route('/list_all_public_projects')
+def list_all_public_projects():
+    r = []
+    for user in list_files('/public/'):
+        for prj in list_files('/public/'+user.name):
+            r+=[(max(file.server_modified for file in list_files('/public/'+user.name+'/'+prj.name)),
+                 user.name+'/'+prj.name)]
+    return [i[1] for i in sorted(r, reverse=True)]
+
 @bp.route('/read')
 def read_file():
     session = get_session()

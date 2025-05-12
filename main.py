@@ -38,5 +38,5 @@ def get_token_page(token):
         print(e)
         return str(e), 500
 
-serve(app, host='0.0.0.0',)
+serve(app, host='0.0.0.0', port='10000')
 # app.run(host='0.0.0.0')
