@@ -5,6 +5,7 @@ from globals import sessions
 from box_api import list_files, file_content, upload
 from uuid import uuid4
 from json import dumps, loads
+from urllib.parse import unquote_plus
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
