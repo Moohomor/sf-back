@@ -4,6 +4,7 @@ from flask import Response
 from globals import sessions
 from mimetypes import guess_type
 from box_api import list_files, file_content, mkdir, upload, delete, copy_files
+from urllib.parse import unquote_plus
 import os
 
 bp = Blueprint('api', __name__, url_prefix='/api')
@@ -17,12 +18,12 @@ def list_dir():
     session = get_session()
     if session is None:
         return 'not authorized', 403
-    directory = request.args.get('project')
+    directory = unquote_plus(request.args.get('project'))
     return [i.name for i in list_files('/storage/'+session['name']+'/'+directory)]
 
 @bp.route('/list_public')
 def list_public():
-    directory = request.args.get('project')
+    directory = unquote_plus(request.args.get('project'))
     return [i.name for i in list_files('/public/'+directory)]
 
 @bp.route('/list_all_public_projects')
@@ -39,14 +40,15 @@ def read_file():
     session = get_session()
     if session is None:
         return 'not authorized', 403
-    file = request.args.get('file')
+    file = unquote_plus(request.args.get('file'))
     binary = '.' not in file or file[-3:] not in ['mod','txt','csv']
     return Response(file_content('/storage/'+session['name']+'/'+file, False),
                     mimetype=guess_type(file)[0] if binary else 'text/plain')
 
 @bp.route('/read_public')
 def read_public():
-    file = request.args.get('file')
+    file = unquote_plus(request.args.get('file'))
+    print('the',file)
     binary = '.' not in file or file[-3:] not in ['mod','txt','csv']
     return Response(file_content('/public/'+file, False), mimetype=guess_type(file)[0] if binary else 'text/plain')
 
@@ -55,7 +57,7 @@ def make_dir():
     session = get_session()
     if session is None:
         return 'not authorized', 403
-    name = request.args.get('name')
+    name = unquote_plus(request.args.get('name'))
     if not name:
         return 'invalid name', 400
     print('Mkdir', mkdir('/storage/'+session['name']+name))
@@ -63,7 +65,7 @@ def make_dir():
 
 @bp.route('/md_public', methods=['POST'])
 def make_dir_public ():
-    name = request.args.get('name')
+    name = unquote_plus(request.args.get('name'))
     if not name:
         return 'invalid name', 400
     print('Mkdir', mkdir('/public/'+name))
@@ -74,13 +76,13 @@ def upload_file():
     session = get_session()
     if session is None:
         return 'not authorized', 403
-    name = request.args.get('name')
+    name = unquote_plus(request.args.get('name'))
     data = request.data
     return str(upload(data,'/storage/'+session['name']+'/'+name) is not None)
 
 @bp.route('/upload_public', methods=['POST'])
 def upload_public():
-    name = request.args.get('name')
+    name = unquote_plus(request.args.get('name'))
     data = request.data
     return str(upload(data,'/public/'+name) is not None)
 
@@ -95,7 +97,7 @@ def uploadb_file():
     if file.filename == '':
         return 'No selected file', 400
     file.save(file.filename)
-    name = request.args.get('name')
+    name = unquote_plus(request.args.get('name'))
     with open(file.filename, 'rb') as f:
         data = f.read()
     os.remove(file.filename)
@@ -109,7 +111,7 @@ def uploadb_public():
     if file.filename == '':
         return 'No selected file', 400
     file.save(file.filename)
-    name = request.args.get('name')
+    name = unquote_plus(request.args.get('name'))
     with open(file.filename, 'rb') as f:
         data = f.read()
     os.remove(file.filename)
@@ -122,7 +124,7 @@ def file_rd():
         return 'not authorized', 403
     if request.method == 'PUT':  # TODO: rename file api on PUT
         return 'wip', 405
-    name = request.args.get('name')
+    name = unquote_plus(request.args.get('name'))
     delete('/storage/'+session['name']+'/'+name)
     return 'OK'
 
@@ -130,15 +132,15 @@ def file_rd():
 def file_public():
     if request.method == 'PUT':  # TODO: rename file api on PUT
         return 'wip', 405
-    name = request.args.get('name')
+    name = unquote_plus(request.args.get('name'))
     delete('/public/'+name)
     return 'OK'
 
 @bp.route('/copy', methods=['POST'])
 def copy_handler():
     session = get_session()
-    frm = request.args.get('from')
-    to = request.args.get('to')
+    frm = unquote_plus(request.args.get('from'))
+    to = unquote_plus(request.args.get('to'))
     if (frm.startswith('/storage') or to.startswith('/storage')) and session is None:
         return 'not authorized', 403
     copy_files(frm, to)
