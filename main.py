@@ -1,3 +1,4 @@
+"""App initialization and core routes"""
 from flask import Flask
 from flask_cors import CORS
 from waitress import serve
@@ -19,10 +20,12 @@ app.register_blueprint(auth.bp, url_prefix='/auth')
 
 @app.route("/ping")
 def ping():
+    """Just return 'pong'"""
     return "pong"
 
 @app.route('/dbx')
 def auth_page():
+    """Get Dropbox authorization instructions"""
     if box_api.authorized():
         return "Dropbox is already authorized"
     return (f'1. Go to this <a target="DBX Auth" href="{box_api.get_link()}">page</a><br>'
@@ -31,6 +34,7 @@ def auth_page():
             f"4. Insert it in URL after /dbx/")
 @app.route('/dbx/<token>')
 def get_token_page(token):
+    """Authorize Dropbox with token"""
     try:
         box_api.login(token.strip())
         return "Dropbox initialized successfully"
@@ -38,5 +42,6 @@ def get_token_page(token):
         print(e)
         return str(e), 500
 
-#serve(app, host='0.0.0.0', port='10000')
-app.run(host='0.0.0.0')
+if __name__=="__main__":
+    serve(app, host='0.0.0.0', port='10000')
+    #app.run(host='0.0.0.0')

@@ -2,3 +2,4 @@
 .venv
 .idea
 dbx_token
+__pycache__
