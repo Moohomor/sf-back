@@ -8,7 +8,7 @@ import time
 print('AI client initialization')
 temperature=os.getenv('AI_TEMPERATURE')
 if not temperature:
-    temperature = 1.18
+    temperature = 0.5
 client = Client()
 print('AI client is ready')
 
@@ -22,6 +22,7 @@ def gpt(msg):
     response = client.chat.completions.create(
         model="deepseek-v3",
         provider=g4f.Provider.LambdaChat,
+        temperature=temperature,
         web_search=False,
         messages=[
             {"role": "user",

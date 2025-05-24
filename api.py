@@ -163,7 +163,7 @@ def copy_handler():
     copy_files(frm, to)
     return 'OK'
 
-@bp.route('/gpt')
+@bp.route('/gpt', methods=['PUT'])
 def gpt_handler():
     msgs = request.data
     #msgs+=[{"role":"user","content":msg}]

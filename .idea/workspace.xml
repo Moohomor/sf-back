@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cb49b2e-434b-4446-bb1e-146569926c67" name="Changes" comment="Gpt handler + serve mode">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ai_system_message.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ai_system_message.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gpt.py" beforeDir="false" afterPath="$PROJECT_DIR$/gpt.py" afterDir="false" />
-    </list>
+    <list default="true" id="6cb49b2e-434b-4446-bb1e-146569926c67" name="Changes" comment="Fix initial prompt" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -325,7 +321,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748098099319</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Fix initial prompt">
+      <option name="closed" value="true" />
+      <created>1748101121122</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1748101121122</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -348,6 +352,7 @@
     <MESSAGE value="Correct upload + pep8 tweaks" />
     <MESSAGE value="List all public projects" />
     <MESSAGE value="Gpt handler + serve mode" />
-    <option name="LAST_COMMIT_MESSAGE" value="Gpt handler + serve mode" />
+    <MESSAGE value="Fix initial prompt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix initial prompt" />
   </component>
 </project>
