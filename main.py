@@ -2,6 +2,7 @@
 from flask import Flask
 from flask_cors import CORS
 from waitress import serve
+import os
 from dotenv import load_dotenv; load_dotenv()
 
 import box_api
@@ -43,5 +44,9 @@ def get_token_page(token):
         return str(e), 500
 
 if __name__=="__main__":
-    serve(app, host='0.0.0.0', port='10000')
-    #app.run(host='0.0.0.0')
+    if os.getenv('SERVE_MODE')=='WSGI':
+        print('Serving in WSGI mode')
+        serve(app, host='0.0.0.0', port='10000')
+    else:
+        print('Debug server is running')
+        app.run(host='0.0.0.0')

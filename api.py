@@ -7,6 +7,7 @@ from mimetypes import guess_type
 from box_api import list_files, file_content, mkdir, upload, delete, copy_files
 from urllib.parse import unquote_plus
 import os
+import gpt
 
 bp = Blueprint('api', __name__, url_prefix='/api')
 def get_session():
@@ -161,3 +162,13 @@ def copy_handler():
         return 'not authorized', 403
     copy_files(frm, to)
     return 'OK'
+
+@bp.route('/gpt')
+def gpt_handler():
+    msgs = request.get_json(force=True)
+    #msgs+=[{"role":"user","content":msg}]
+    try:
+        return gpt.gpt(msgs)
+    except Exception as e:
+        print(e)
+        return 'Простите, я не могу вам сейчас ничем помочь :('
