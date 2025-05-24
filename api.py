@@ -165,10 +165,10 @@ def copy_handler():
 
 @bp.route('/gpt')
 def gpt_handler():
-    msgs = request.get_json(force=True)
+    msgs = request.data
     #msgs+=[{"role":"user","content":msg}]
     try:
-        return gpt.gpt(msgs)
+        return gpt.gpt(msgs.decode())
     except Exception as e:
         print(e)
         return 'Простите, я не могу вам сейчас ничем помочь :('

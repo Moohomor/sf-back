@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cb49b2e-434b-4446-bb1e-146569926c67" name="Changes" comment="List all public projects">
-      <change afterPath="$PROJECT_DIR$/ai_system_message.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gpt.py" afterDir="false" />
+    <list default="true" id="6cb49b2e-434b-4446-bb1e-146569926c67" name="Changes" comment="Gpt handler + serve mode">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ai_system_message.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ai_system_message.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gpt.py" beforeDir="false" afterPath="$PROJECT_DIR$/gpt.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -319,7 +317,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747057648526</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Gpt handler + serve mode">
+      <option name="closed" value="true" />
+      <created>1748098099319</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1748098099319</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -341,6 +347,7 @@
     <MESSAGE value="Correct responses" />
     <MESSAGE value="Correct upload + pep8 tweaks" />
     <MESSAGE value="List all public projects" />
-    <option name="LAST_COMMIT_MESSAGE" value="List all public projects" />
+    <MESSAGE value="Gpt handler + serve mode" />
+    <option name="LAST_COMMIT_MESSAGE" value="Gpt handler + serve mode" />
   </component>
 </project>

@@ -12,26 +12,25 @@ if not temperature:
 client = Client()
 print('AI client is ready')
 
-with open('ai_system_message.txt') as file:
-    system = file.readline()
+with open('ai_system_message.txt', encoding='utf-8') as file:
+    system = file.read()
 
-def gpt(msgs):
+def gpt(msg):
     """Takes message history (list of strings) and returns ai response"""
     global client
     start_time = time.time()
     response = client.chat.completions.create(
-        model="dolphin-3.0-24b",
-        provider=g4f.Provider.Blackbox,
-        temperature=temperature,
+        model="deepseek-v3",
+        provider=g4f.Provider.LambdaChat,
         web_search=False,
         messages=[
-            {"role": "system",
-             "content": system
-            }
-        ]+msgs
+            {"role": "user",
+             "content": system+'\n'+msg
+            },
+        ]
     )
     resp=response.choices[0].message.content.strip()
-    msgs+=[{"role":"assistant","content":resp}]
+    # msgs+=[{"role":"assistant","content":resp}]
     return {"content":resp,"time_elapsed": time.time()-start_time}
     # try:
     #     return json.loads(resp[8:-4])
